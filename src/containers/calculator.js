@@ -23,24 +23,23 @@ class Calculator extends Component {
         this.restar = this.restar.bind(this);
 
     }
-    sumar(s1, s2) {
+    sumar() {
         this.props.result(`Suma: ${this.state.s1} + ${this.state.s2} = ${this.state.s1+this.state.s2}`);
         this.setState({ s1: 0, s2: 0 });
     }
-    multiplicar(m1, m2) {
+    multiplicar() {
         this.props.result(`Multiplicacion: ${this.state.m1} * ${this.state.m2} = ${this.state.m1*this.state.m2}`);
         this.setState({ m1: 0, m2: 0 });
     }
-    dividir(d1, d2) {
+    dividir() {
         if(this.state.d2===0){
             this.props.result(`No se puede dividir entre 0!`);
-            this.setState({ d1: 0, d2: 0 });
         }else{
             this.props.result(`Division: ${this.state.d1} / ${this.state.d2} = ${this.state.d1/this.state.d2}`)
         }
         this.setState({ d1: 0, d2: 0 });
     }
-    restar(r1, r2) {
+    restar() {
         this.props.result(`Resta: ${this.state.r1} - ${this.state.r2} = ${this.state.r1-this.state.r2}`);
         this.setState({ r1: 0, r2: 0 });
     }
@@ -101,4 +100,5 @@ function mapStateToProps({ calculatorReducer }) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ result }, dispatch)
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(Calculator);
