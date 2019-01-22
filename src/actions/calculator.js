@@ -1,11 +1,13 @@
-export function addNumbers(){
+export function addNumbers(n1,n2){
     return{
-        type:"ADD_NUMBERS"
+        type:"ADD_NUMBERS",
+        payload:{n1,n2}
     };
 }
 
-export function multiplyNumbers(){
+export function multiplyNumbers(n1,n2){
     return{
-        type:"NMULTIPLY_NUMBERS"
+        type:"MULTIPLY_NUMBERS",
+        payload:{n1,n2}
     };
 }
