@@ -1,11 +1,35 @@
 import React, { Component } from 'react';
 import Calculator from './containers/calculator';
+import Index from './containers/index';
+import CalculatorResults from './containers/calculator-results'; 
 import './App.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <Calculator/>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/calculator/">Calculator</Link>
+              </li>
+              <li>
+                <Link to="/calculator-results/">Calculator results</Link>
+              </li>
+            </ul>
+          </nav>
+          <Route path="/" exact component={Index} />
+          <Route path="/calculator/" component={Calculator} />
+          <Route path="/calculator-results/" component={CalculatorResults} />
+        </div>
+
+      </Router>
+
     );
   }
 }
