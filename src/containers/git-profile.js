@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { gitProfile } from '../actions/';
+import { gitProfile } from '../actions';
 
 class GitProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: ""
+            userName: ''
         };
     }
     render() {

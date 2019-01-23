@@ -3,11 +3,12 @@ function getInitialState(){
 }
 
 export default function(state=getInitialState() ,action){
-
+    console.log('state:',state);
+    console.log('action:',action);
     switch(action.type){
-        case "GET_GITPROFILE":
-            console.log('entro!')
-            return 
+        case 'GET_GITPROFILE':
+            return action.payload;
+            
         default:
             return state;
     }
