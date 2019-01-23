@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { result} from '../actions/calculator';
+import { result} from '../actions/';
 
 class Calculator extends Component {
     constructor(props) {
@@ -18,7 +18,6 @@ class Calculator extends Component {
         }
         this.sumar = this.sumar.bind(this);
         this.multiplicar = this.multiplicar.bind(this);
-        this.createList = this.createList.bind(this);
         this.dividir = this.dividir.bind(this);
         this.restar = this.restar.bind(this);
 
@@ -42,9 +41,6 @@ class Calculator extends Component {
     restar() {
         this.props.result(`Resta: ${this.state.r1} - ${this.state.r2} = ${this.state.r1-this.state.r2}`);
         this.setState({ r1: 0, r2: 0 });
-    }
-    createList(state, i) {
-        return (<li>{state}</li>);
     }
     render() {
         return (
@@ -81,24 +77,13 @@ class Calculator extends Component {
                     </ul>
                     <button onClick={this.dividir}>Dividir</button>
                 </div>
-                <hr />
-                <h2>Resultados</h2>
-                <ul>
-                    {this.props.calculatorReducer.map(this.createList)}
-                </ul>
+
             </div>
         );
     }
 }
-//bind reducers to container
-function mapStateToProps({ calculatorReducer }) {
-    return {
-        calculatorReducer
-    };
-}
-//bind actions to container
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ result }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calculator);
+export default connect(undefined, mapDispatchToProps)(Calculator);
