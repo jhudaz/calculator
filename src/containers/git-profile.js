@@ -26,7 +26,7 @@ class GitProfile extends Component {
                 <h2>Profile</h2>
                 <ul>
                     <li>name:{this.props.gitProfileReducer.name}</li>
-                    <li><img src={this.props.gitProfileReducer.avatar_url} alt='image profile'/></li>
+                    <li><img src={this.props.gitProfileReducer.avatar_url} alt="profile"/></li>
                     <li>location: {this.props.gitProfileReducer.location}</li>
                     <li>description: {this.props.gitProfileReducer.bio}</li>
                     <li>id: {this.props.gitProfileReducer.id}</li>

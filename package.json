@@ -15,8 +15,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "mocha",
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -28,6 +29,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "chai": "^4.2.0",
+    "cypress": "^3.1.4",
+    "mocha": "^5.2.0",
     "redux-devtools": "^3.5.0"
   }
 }
