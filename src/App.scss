@@ -1,0 +1,25 @@
+.box,.row{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+
+    .row{
+        flex-direction: row;
+        flex: auto;
+    }
+    .form, .list{
+        overflow-y: auto;
+    }
+    .form{
+        flex: 1;
+    }
+    .list{
+        flex: 2;
+    }
+    .save{
+        margin:10px;
+    }
+    .listElement{
+        margin: 5px;
+    }
+}
