@@ -35,7 +35,9 @@ const User = sequelize.define('users', {
 });
 //api to get all the user from db
 app.get('/', async (req, res) => {
-    const users = await User.findAll();
+    const users = await User.findAll({
+        order: sequelize.col('id')
+    });
     res.json(users);
 })
 //api to get only one user by id
