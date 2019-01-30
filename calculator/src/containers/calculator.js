@@ -49,7 +49,7 @@ class Calculator extends Component {
                 <div className="row">
                     <div className="boxes">
                         <h3>Sumar</h3>
-                        <ul>
+                        <ul className="list">
                             <li><input className="suma1" type="number" value={this.state.s1} onChange={a => this.setState({ s1: +a.target.value })} /></li>
                             <li><input className="suma2" type="number" value={this.state.s2} onChange={a => this.setState({ s2: +a.target.value })} /></li>
                         </ul>
@@ -57,7 +57,7 @@ class Calculator extends Component {
                     </div>
                     <div className="boxes">
                         <h3>Multiplicar</h3>
-                        <ul>
+                        <ul className="list">
                             <li><input className="multi1" type="number" value={this.state.m1} onChange={a => this.setState({ m1: +a.target.value })} /></li>
                             <li><input className="multi2" type="number" value={this.state.m2} onChange={a => this.setState({ m2: +a.target.value })} /></li>
                         </ul>
@@ -67,7 +67,7 @@ class Calculator extends Component {
                 <div className="row">
                     <div className="boxes">
                         <h3>Restar</h3>
-                        <ul>
+                        <ul className="list">
                             <li><input className="resta1" type="number" value={this.state.r1} onChange={a => this.setState({ r1: +a.target.value })} /></li>
                             <li><input className="resta2" type="number" value={this.state.r2} onChange={a => this.setState({ r2: +a.target.value })} /></li>
                         </ul>
@@ -75,7 +75,7 @@ class Calculator extends Component {
                     </div>
                     <div className="boxes">
                         <h3>Dividir</h3>
-                        <ul>
+                        <ul className="list">
                             <li><input className="divi1" type="number" value={this.state.d1} onChange={a => this.setState({ d1: +a.target.value })} /></li>
                             <li><input className="divi2" type="number" value={this.state.d2} onChange={a => this.setState({ d2: +a.target.value })} /></li>
                         </ul>

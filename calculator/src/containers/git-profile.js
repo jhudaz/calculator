@@ -10,7 +10,7 @@ class GitProfile extends Component {
         this.state = {
             userName: ''
         };
-    this.handleKeyUp = this.handleKeyUp.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
     }
     createList(data, i) {
         return (
@@ -28,7 +28,7 @@ class GitProfile extends Component {
                 <h2>User:</h2>
                 <br />
                 <input autofocus="true" type="text" placeholder='user' onKeyUp={this.handleKeyUp} value={this.state.userName} onChange={e => this.setState({ userName: e.target.value })} />
-                <button 
+                <button
                     className="save"
                     onClick={() => this.props.gitProfile(this.state.userName)}>Find</button>
                 <hr />

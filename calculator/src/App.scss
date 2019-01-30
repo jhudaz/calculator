@@ -3,6 +3,10 @@
 }
 .list{
     list-style-type: none;
+    margin: auto;
+    li{
+        margin-bottom: 10px;
+    }
 }
 .box,.row{
     margin: 20px;
