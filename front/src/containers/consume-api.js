@@ -16,6 +16,7 @@ class ConsumeApi extends Component {
         }
         this.setEdit = this.setEdit.bind(this);
         this.saveData = this.saveData.bind(this);
+        this.createRouteUpdate = this.createRouteUpdate.bind(this)
     }
     //function to call the action consumeApi  the which one bring all the users stored in the db 
     componentDidMount() {
@@ -31,6 +32,30 @@ class ConsumeApi extends Component {
     setEdit() {
         this.setState({ edit: true });
     }
+    //function to display delete a update buttons  
+    createRouteUpdate(users) {
+        return (
+            <Router>
+                <div className="routes">
+                    <ul className="list">
+                        <li>
+                            <button
+                                className="delete"
+                                onClick={() => this.props.consumeApiDelete(users.id)}>Delete</button>
+                        </li>
+                        <li>
+                            <Link to={`/update-form/${users.id}`} >
+                                <button
+                                    className="update"
+                                    onClick={() => this.setEdit()}>Update</button>
+                            </Link>
+                        </li>
+                    </ul>
+                    <Route exact path={`/update-form/${users.id}`} component={Update} />
+                </div>
+            </Router>
+        )
+    }
     //function create  the users list with delete and update functions
     createlist() {
         return this.props.consumeApiReducer.map((users) => {
@@ -40,30 +65,11 @@ class ConsumeApi extends Component {
                         className="listElement">
                         <h3>{users.id}) {users.firstName}  {users.lastName}</h3>
                     </li>
-                    <Router>
-                        <div className="routes">
-                            <ul className="list">
-                                <li>
-                                    <button
-                                        className="delete"
-                                        onClick={() => this.props.consumeApiDelete(users.id)}>Delete</button>
-                                </li>
-                                <li>
-                                    <Link to={`/update-form/${users.id}`} >
-                                        <button
-                                            className="update"
-                                            onClick={() => this.setEdit()}>Update</button>
-                                    </Link>
-                                </li>
-                            </ul>
-                            <Route exact path={`/update-form/${users.id}`} component={Update} />
-                        </div>
-                    </Router>
+                    {this.createRouteUpdate(users)}
                 </div>
             )
         })
     }
-
     render() {
         return (
             <div className="box">
