@@ -24,7 +24,7 @@ sequelize
         console.error('Unable to connect to the database:', err);
     });
 
-
+//to define a table 
 const User = sequelize.define('users', {
     firstName: {
         type: Sequelize.STRING
@@ -33,35 +33,26 @@ const User = sequelize.define('users', {
         type: Sequelize.STRING
     }
 });
-
-
-// const Prueba = sequelize.define('prueba', {
-//     nombre: {
-//         type: Sequelize.STRING
-//     },
-//     descripcion: {
-//         type: Sequelize.STRING
-//     },
-
-// }, {
-//     tableName: 'prueba',
-//     freezeTableName: true
-// });
-// Prueba.findAll().then(Pruebas => {
-//     console.log(Pruebas)
-// })
-
-
-
+//api to get all the user from db
 app.get('/', async (req, res) => {
     const users = await User.findAll();
     res.json(users);
 })
-
+//api to get only one user by id
+app.get('/user', async (req, res) => {
+    const singleUser = await User.findByPk(req.body.id).then(() => {
+        return User.findAll({
+                where: {
+                    id: req.body.id
+                }
+            })
+    })
+    res.json(singleUser);
+})
+//api to save a user in the db
 app.post('/', async (req, res) => {
     console.log(req.body);
     const userInserted = await User.sync({ force: false }).then(() => {
-        // Table created
         return User.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -70,7 +61,7 @@ app.post('/', async (req, res) => {
     res.json(userInserted)
 
 })
-
+//api to update a single user
 app.put('/', async (req, res) => {
     const userUpdated = await User.findByPk(req.body.id).then(() => {
         return User.update({
@@ -83,19 +74,19 @@ app.put('/', async (req, res) => {
                 }
             })
     })
-    res.json()
+    res.json(userUpdated);
 })
-
+//api to delete a single row
 app.delete('/', async (req, res) => {
     console.log("data:",req.body)
-    const userUpdated = await User.findByPk(req.body.id).then(() => {
+    const userDeleted = await User.findByPk(req.body.id).then(() => {
         return User.destroy({
             where: {
                 id: req.body.id
             }
         })
     })
-    res.json()
+    res.json(userDeleted)
 })
 
 
