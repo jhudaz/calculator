@@ -1,7 +1,7 @@
 import axios from 'axios';
 const apiRoute = 'http://localhost:7000';
 
-
+//GET ALL
 export function consumeApiGet() {
     return (dispatch) => {
         return axios.get(`${apiRoute}`)
@@ -16,7 +16,22 @@ export function consumeApiGet() {
             });
     };
 }
-
+//GET ONE
+export function consumeApiGetById(id) {
+    return (dispatch) => {
+        return axios.get(`${apiRoute}`,{id:id})
+            .then(res => {
+                dispatch({
+                    type: 'CONSUME_API_GET',
+                    payload: res.data
+                });
+            })
+            .catch(error => {
+                throw (error);
+            });
+    };
+}
+//POST
 export function consumeApi(first, last) {
     return (dispatch) => {
         return axios.post(`${apiRoute}`, { "firstName": first, "lastName": last })
@@ -28,7 +43,7 @@ export function consumeApi(first, last) {
             });
     }
 }
-
+//DELETE
 export function consumeApiDelete(id) {
     console.log(id);
     return (dispatch) => {
@@ -41,8 +56,7 @@ export function consumeApiDelete(id) {
             });
     }
 }
-
-
+//UPDATE
 export function consumeApiPut(id,first,last) {
     console.log('data:',id,first,last)
     return (dispatch) => {

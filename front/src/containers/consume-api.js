@@ -16,7 +16,6 @@ class ConsumeApi extends Component {
         }
         this.setEdit = this.setEdit.bind(this);
         this.saveData = this.saveData.bind(this);
-        this.updateData = this.updateData.bind(this);
     }
     //function to call the action consumeApi  the which one bring all the users stored in the db 
     componentDidMount() {
@@ -27,11 +26,7 @@ class ConsumeApi extends Component {
         this.props.consumeApi(fn, ln);
         this.setState({ firstName: '', lastName: '' });
     }
-    //function to update data of one user and clear the inputs
-    updateData(id, fn, ln) {
-        this.props.consumeApiPut(id, fn, ln);
-        this.setState({ edit: false, firstName: '', lastName: '' });
-    }
+
     //function to display the inputs for the edit function
     setEdit() {
         this.setState({ edit: true });
@@ -45,14 +40,25 @@ class ConsumeApi extends Component {
                         className="listElement">
                         <h3>{users.id}) {users.firstName}  {users.lastName}</h3>
                     </li>
-                    <div>
-                        <button
-                            className="delete"
-                            onClick={() => this.props.consumeApiDelete(users.id)}>Delete</button>
-                        <button
-                            className="update"
-                            onClick={() => this.setEdit()}>Update</button>
-                    </div>
+                    <Router>
+                        <div className="routes">
+                            <ul className="list">
+                                <li>
+                                    <button
+                                        className="delete"
+                                        onClick={() => this.props.consumeApiDelete(users.id)}>Delete</button>
+                                </li>
+                                <li>
+                                    <Link to={`/update-form/${users.id}`} >
+                                        <button
+                                            className="update"
+                                            onClick={() => this.setEdit()}>Update</button>
+                                    </Link>
+                                </li>
+                            </ul>
+                            <Route exact path={`/update-form/${users.id}`} component={Update} />
+                        </div>
+                    </Router>
                 </div>
             )
         })

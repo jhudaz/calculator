@@ -8,6 +8,11 @@
         margin-bottom: 10px;
     }
 }
+.routes{
+    .list, ul ,li{
+        display: inline-block;
+    }
+}
 .box,.row{
     margin: 20px;
     display: flex;

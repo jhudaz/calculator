@@ -1,21 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import {} from '../actions';
+import { consumeApiPut,consumeApiGetById } from '../actions';
 import '../App.scss';
 
 class Update extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={
-      edit:false
+    this.state = {
+      edit: false,
+      firstName: '',
+      lastName: ''
     }
+    this.setEdit = this.setEdit.bind(this);
+    this.updateData = this.updateData.bind(this);
+  }
+  //function to update data of one user and clear the inputs
+  updateData(id, fn, ln) {
+    this.props.consumeApiPut(id, fn, ln);
+    this.setState({ edit: false, firstName: '', lastName: '' });
+  }
+  setEdit() {
+    this.setState({ edit: true });
+    
   }
   render() {
     return (
       <div className="container">
         <div>
-          {/* <span>{users.id})</span> */}
           <br />
           <input
             type="text"
@@ -44,16 +56,17 @@ class Update extends Component {
     )
   }
 }
-//reduces
-function mapStateToProps({}) {
+//reducers
+function mapStateToProps({ consumeApiReducer }) {
   return {
-
+    consumeApiReducer
   };
 }
 //actions
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-
+    consumeApiPut,
+    consumeApiGetById
   }, dispatch);
 }
 
