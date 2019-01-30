@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { consumeApi, consumeApiPut, consumeApiGet, consumeApiDelete } from '../actions';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Update from './update-form';
 import '../App.scss';
 
 class ConsumeApi extends Component {
@@ -41,56 +43,17 @@ class ConsumeApi extends Component {
                 <div key={users.id} ref={this.formRef}>
                     <li
                         className="listElement">
-                        {/*show data if the edit state is false*/}
-                        {this.state.edit === false &&
-                            <h3>{users.id}) {users.firstName}  {users.lastName}</h3>
-                        }
-                        {/*show inputs if the edit state is true*/}
-                        {this.state.edit &&
-                            <div>
-                                <span>{users.id})</span>
-                                <br/>
-                                <input
-                                    type="text"
-                                    placeholder="first name" 
-                                    onChange={(e)=> this.setState({firstName:e.target.value})}/>
-                                <br/>
-                                <input
-                                    type="text"
-                                    placeholder="last name" 
-                                    onChange={(e)=> this.setState({lastName:e.target.value})}/>
-                            </div>
-                        }
+                        <h3>{users.id}) {users.firstName}  {users.lastName}</h3>
                     </li>
-                    {/*Delete and edit buttons if the edit state is false*/}
-                    {this.state.edit === false &&
-                        <div>
-                            <button
-                                className="delete"
-                                onClick={() => this.props.consumeApiDelete(users.id)}>Delete</button>
-                            <button
-                                className="update"
-                                onClick={() => this.setEdit()}>Update</button>
-                        </div>
-                    }
-                    {/*Save and cancel if the edit state is true*/}
-                    {this.state.edit &&
-                        <div>
-                            <button
-                                className="save"
-                                onClick={() => this.updateData(
-                                    users.id,
-                                    this.state.firstName,
-                                    this.state.lastName
-                                )}
-                                disabled={this.state.firstName.length === 0 || this.state.lastName.length === 0}>Save</button>
-                            <button
-                                className="delete"
-                                onClick={() => this.setState({edit: false, firstName:'', lastName:''})}>Cancel</button>
-                        </div>
-                    }
-
-                </div> 
+                    <div>
+                        <button
+                            className="delete"
+                            onClick={() => this.props.consumeApiDelete(users.id)}>Delete</button>
+                        <button
+                            className="update"
+                            onClick={() => this.setEdit()}>Update</button>
+                    </div>
+                </div>
             )
         })
     }
@@ -118,8 +81,8 @@ class ConsumeApi extends Component {
                             onClick={() => this.saveData(this.state.firstName, this.state.lastName)}
                             disabled={this.state.firstName.length === 0 || this.state.lastName.length === 0}>Save</button>
                         <button
-                                className="delete"
-                                onClick={() => this.setState({edit: false, firstName:'', lastName:''})}>Cancel</button>
+                            className="delete"
+                            onClick={() => this.setState({ edit: false, firstName: '', lastName: '' })}>Cancel</button>
                     </div>
                     <div className="list">
                         <ul className="list">
