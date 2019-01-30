@@ -11,8 +11,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <nav>
+        <div >
+          <nav className="navBar">
             <ul>
               <li>
                 <Link to="/">Home</Link>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { gitProfile } from '../actions';
+import '../App.scss';
 
 class GitProfile extends Component {
     constructor(props) {
@@ -23,14 +24,16 @@ class GitProfile extends Component {
     }
     render() {
         return (
-            <div>
-                <label>Git User:</label>
+            <div className="container">
+                <h2>User:</h2>
                 <br />
                 <input autofocus="true" type="text" placeholder='user' onKeyUp={this.handleKeyUp} value={this.state.userName} onChange={e => this.setState({ userName: e.target.value })} />
-                <button onClick={() => this.props.gitProfile(this.state.userName)}>Find</button>
+                <button 
+                    className="save"
+                    onClick={() => this.props.gitProfile(this.state.userName)}>Find</button>
                 <hr />
                 <h2>Profile</h2>
-                <ul>
+                <ul className="list">
                     <li>name:{this.props.gitProfileReducer.name}</li>
                     <li><img src={this.props.gitProfileReducer.avatar_url} alt="profile" /></li>
                     <li>location: {this.props.gitProfileReducer.location}</li>

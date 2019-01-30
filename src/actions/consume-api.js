@@ -42,26 +42,13 @@ export function consumeApiDelete(id) {
     }
 }
 
-export function consumeApiUpdate(id) {
+
+export function consumeApiPut(id,first,last) {
+    console.log('data:',id,first,last)
     return (dispatch) => {
-        return axios.delete(`${apiRoute}`, { "id": id })
+        return axios.put(`${apiRoute}/`,{id:id,firstName:first,lastName:last})
             .then(() => {
                 dispatch(consumeApiGet());
-            })
-            .catch(error => {
-                throw (error);
-            });
-    }
-}
-
-export function consumeApiPut() {
-    return (dispatch) => {
-        return axios.put(`${apiRoute}/user`)
-            .then(response => {
-                dispatch({
-                    type: 'CONSUME_API_PUT',
-                    payload: response.data
-                })
             })
             .catch(error => {
                 throw (error);

@@ -1,3 +1,9 @@
+.container{
+    margin: 20px;
+}
+.list{
+    list-style-type: none;
+}
 .box,.row{
     margin: 20px;
     display: flex;
@@ -7,6 +13,9 @@
         flex-direction: row;
         flex: auto;
     }
+    .boxes{
+        flex:auto;
+    }
     .form, .list{
         overflow-y: auto;
     }
@@ -14,7 +23,8 @@
         flex: 1;
     }
     .list{
-        flex: 2;
+        flex: 4;
+        list-style: none;
     }
     .save{
         margin:10px;
@@ -22,4 +32,54 @@
     .listElement{
         margin: 5px;
     }
+}
+.navBar{
+   ul li {
+    list-style: none;
+    display: inline-block;
+    margin:15px;
+
+
+    a:-webkit-any-link{
+        color:#ffffff;
+        text-decoration:none;
+    }
+    a:hover{
+        color: aqua;
+    }
+    .logo img{
+        width: 5%;
+    }
+  
+   }
+   background-color: #34495e;
+   height: 60px;
+   margin-top: -25px;
+}
+.save, .delete, .update{
+    width: 80px;
+    margin: 0px 10px 0px 10px;
+    border-radius: 5px;
+    border-style: groove;
+    font-weight: 600;
+    color:#ffffff;
+    cursor: pointer;
+}
+.save{
+    background-color: #44bd32;
+    border:2px solid #4cd137;
+    cursor: cell;
+}
+.save:disabled{
+    background-color: #718093;
+    border:2px solid #7f8fa6;
+    cursor: not-allowed;
+}
+.delete{
+    background-color: #c23616;
+    border:2px solid #e84118;
+}
+.update{
+    background-color: #40739e;
+    border:2px solid #487eb0;
 }

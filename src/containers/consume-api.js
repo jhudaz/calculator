@@ -9,32 +9,92 @@ class ConsumeApi extends Component {
         super(props)
         this.state = {
             firstName: '',
-            lastName: ''
+            lastName: '',
+            edit: false
         }
-    this.saveData = this.saveData.bind(this);
+        this.setEdit = this.setEdit.bind(this);
+        this.saveData = this.saveData.bind(this);
+        this.updateData = this.updateData.bind(this);
     }
+    //function to call the action consumeApi  the which one bring all the users stored in the db 
     componentDidMount() {
         this.props.consumeApiGet();
     }
-    saveData(fn,ln){
-        this.props.consumeApi(fn,ln);
-        this.setState({firstName:'',lastName:''});
+    //function to save de data and clear the inputs
+    saveData(fn, ln) {
+        this.props.consumeApi(fn, ln);
+        this.setState({ firstName: '', lastName: '' });
     }
+    //function to update data of one user and clear the inputs
+    updateData(id, fn, ln) {
+        this.props.consumeApiPut(id, fn, ln);
+        this.setState({ edit: false, firstName: '', lastName: '' });
+    }
+    //function to display the inputs for the edit function
+    setEdit() {
+        this.setState({ edit: true });
+    }
+    //function create  the users list with delete and update functions
     createlist() {
-
         return this.props.consumeApiReducer.map((users) => {
             return (
-                <div key={users.id}>
+                <div key={users.id} ref={this.formRef}>
                     <li
-                        className="listElement">{users.id} {users.firstName} {users.lastName}</li>
-                    <button className="eliminar"
-                        onClick={() => this.props.consumeApiDelete(users.id)}>Eliminar</button>
-                    <button className="actualizar">Actualizar</button>
-                </div>
+                        className="listElement">
+                        {/*show data if the edit state is false*/}
+                        {this.state.edit === false &&
+                            <h3>{users.id}) {users.firstName}  {users.lastName}</h3>
+                        }
+                        {/*show inputs if the edit state is true*/}
+                        {this.state.edit &&
+                            <div>
+                                <span>{users.id})</span>
+                                <br/>
+                                <input
+                                    type="text"
+                                    placeholder="first name" 
+                                    onChange={(e)=> this.setState({firstName:e.target.value})}/>
+                                <br/>
+                                <input
+                                    type="text"
+                                    placeholder="last name" 
+                                    onChange={(e)=> this.setState({lastName:e.target.value})}/>
+                            </div>
+                        }
+                    </li>
+                    {/*Delete and edit buttons if the edit state is false*/}
+                    {this.state.edit === false &&
+                        <div>
+                            <button
+                                className="delete"
+                                onClick={() => this.props.consumeApiDelete(users.id)}>Delete</button>
+                            <button
+                                className="update"
+                                onClick={() => this.setEdit()}>Update</button>
+                        </div>
+                    }
+                    {/*Save and cancel if the edit state is true*/}
+                    {this.state.edit &&
+                        <div>
+                            <button
+                                className="save"
+                                onClick={() => this.updateData(
+                                    users.id,
+                                    this.state.firstName,
+                                    this.state.lastName
+                                )}
+                                disabled={this.state.firstName.length === 0 || this.state.lastName.length === 0}>Save</button>
+                            <button
+                                className="delete"
+                                onClick={() => this.setState({edit: false, firstName:'', lastName:''})}>Cancel</button>
+                        </div>
+                    }
+
+                </div> 
             )
         })
     }
-    
+
     render() {
         return (
             <div className="box">
@@ -56,7 +116,10 @@ class ConsumeApi extends Component {
                         <button
                             className="save"
                             onClick={() => this.saveData(this.state.firstName, this.state.lastName)}
-                            disabled={this.state.firstName.length === 0 || this.state.lastName.length ===0}>Guardar</button>
+                            disabled={this.state.firstName.length === 0 || this.state.lastName.length === 0}>Save</button>
+                        <button
+                                className="delete"
+                                onClick={() => this.setState({edit: false, firstName:'', lastName:''})}>Cancel</button>
                     </div>
                     <div className="list">
                         <ul className="list">

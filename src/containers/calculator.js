@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { result } from '../actions/';
+import '../App.scss';
 
 class Calculator extends Component {
     constructor(props) {
@@ -44,39 +45,44 @@ class Calculator extends Component {
     }
     render() {
         return (
-            <div>
-                <div>
-                    <label>Sumar</label>
-                    <ul>
-                        <li><input className="suma1" type="number" value={this.state.s1} onChange={a => this.setState({ s1: +a.target.value })} /></li>
-                        <li><input className="suma2" type="number" value={this.state.s2} onChange={a => this.setState({ s2: +a.target.value })} /></li>
-                    </ul>
-                    <button className="sumar" onClick={this.sumar}>Sumar</button>
+            <div className="container box">
+                <div className="row">
+                    <div className="boxes">
+                        <h3>Sumar</h3>
+                        <ul>
+                            <li><input className="suma1" type="number" value={this.state.s1} onChange={a => this.setState({ s1: +a.target.value })} /></li>
+                            <li><input className="suma2" type="number" value={this.state.s2} onChange={a => this.setState({ s2: +a.target.value })} /></li>
+                        </ul>
+                        <button className="sumar save" onClick={this.sumar}>Sumar</button>
+                    </div>
+                    <div className="boxes">
+                        <h3>Multiplicar</h3>
+                        <ul>
+                            <li><input className="multi1" type="number" value={this.state.m1} onChange={a => this.setState({ m1: +a.target.value })} /></li>
+                            <li><input className="multi2" type="number" value={this.state.m2} onChange={a => this.setState({ m2: +a.target.value })} /></li>
+                        </ul>
+                        <button className="multiplicar save" onClick={this.multiplicar}>Multiplicar</button>
+                    </div>
                 </div>
-                <div>
-                    <label>MUltiplicar</label>
-                    <ul>
-                        <li><input className="multi1" type="number" value={this.state.m1} onChange={a => this.setState({ m1: +a.target.value })} /></li>
-                        <li><input className="multi2" type="number" value={this.state.m2} onChange={a => this.setState({ m2: +a.target.value })} /></li>
-                    </ul>
-                    <button className="multiplicar" onClick={this.multiplicar}>Multiplicar</button>
+                <div className="row">
+                    <div className="boxes">
+                        <h3>Restar</h3>
+                        <ul>
+                            <li><input className="resta1" type="number" value={this.state.r1} onChange={a => this.setState({ r1: +a.target.value })} /></li>
+                            <li><input className="resta2" type="number" value={this.state.r2} onChange={a => this.setState({ r2: +a.target.value })} /></li>
+                        </ul>
+                        <button className="restar save" onClick={this.restar}>Restar</button>
+                    </div>
+                    <div className="boxes">
+                        <h3>Dividir</h3>
+                        <ul>
+                            <li><input className="divi1" type="number" value={this.state.d1} onChange={a => this.setState({ d1: +a.target.value })} /></li>
+                            <li><input className="divi2" type="number" value={this.state.d2} onChange={a => this.setState({ d2: +a.target.value })} /></li>
+                        </ul>
+                        <button className="dividir save" onClick={this.dividir}>Dividir</button>
+                    </div>
                 </div>
-                <div>
-                    <label>Restar</label>
-                    <ul>
-                        <li><input className="resta1" type="number" value={this.state.r1} onChange={a => this.setState({ r1: +a.target.value })} /></li>
-                        <li><input className="resta2" type="number" value={this.state.r2} onChange={a => this.setState({ r2: +a.target.value })} /></li>
-                    </ul>
-                    <button className="restar" onClick={this.restar}>Restar</button>
-                </div>
-                <div>
-                    <label>Dividir</label>
-                    <ul>
-                        <li><input className="divi1" type="number" value={this.state.d1} onChange={a => this.setState({ d1: +a.target.value })} /></li>
-                        <li><input className="divi2" type="number" value={this.state.d2} onChange={a => this.setState({ d2: +a.target.value })} /></li>
-                    </ul>
-                    <button className="dividir" onClick={this.dividir}>Dividir</button>
-                </div>
+
 
             </div>
         );
