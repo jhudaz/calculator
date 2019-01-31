@@ -6,7 +6,6 @@ const port = process.env.PORT || 3000
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const Sequelize = require('sequelize')
-const User = require('./models/user');
 const models = require('./models');
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
@@ -35,8 +34,8 @@ app.get('/', async (req, res) => {
 })
 //api to get only one user by id
 app.get('/user', async (req, res) => {
-    const singleUser = await User.findByPk(req.body.id).then(() => {
-        return User.findAll({
+    const singleUser = await models.User.findByPk(req.body.id).then(() => {
+        return models.User.findAll({
                 where: {
                     id: req.body.id
                 }
@@ -47,8 +46,8 @@ app.get('/user', async (req, res) => {
 //api to save a user in the db
 app.post('/', async (req, res) => {
     console.log(req.body);
-    const userInserted = await User.sync({ force: false }).then(() => {
-        return User.create({
+    const userInserted = await models.User.sync({ force: false }).then(() => {
+        return models.User.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
         });
@@ -58,8 +57,8 @@ app.post('/', async (req, res) => {
 })
 //api to update a single user
 app.put('/', async (req, res) => {
-    const userUpdated = await User.findByPk(req.body.id).then(() => {
-        return User.update({
+    const userUpdated = await models.User.findByPk(req.body.id).then(() => {
+        return models.User.update({
             firstName: req.body.firstName,
             lastName: req.body.lastName
         },
@@ -74,8 +73,8 @@ app.put('/', async (req, res) => {
 //api to delete a single row
 app.delete('/', async (req, res) => {
     console.log("data:",req.body)
-    const userDeleted = await User.findByPk(req.body.id).then(() => {
-        return User.destroy({
+    const userDeleted = await models.User.findByPk(req.body.id).then(() => {
+        return models.User.destroy({
             where: {
                 id: req.body.id
             }
