@@ -5,7 +5,7 @@ services:
   - postgresql
 before_script:
   - cd back
-  - psql -c 'create database postgres;' -U postgres
+  - psql -c 'create database pruebas;' -U postgres
   - npm install
   - npm run migrate
   - npm run seed:test
