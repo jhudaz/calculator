@@ -7,6 +7,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const Sequelize = require('sequelize')
 const User = require('./models/user');
+const models = require('./models');
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOSTNAME,
@@ -27,7 +28,7 @@ sequelize
 
 //api to get all the user from db
 app.get('/', async (req, res) => {
-    const users = await User.findAll({
+    const users = await models.User.findAll({
         order: sequelize.col('id')
     });
     res.json(users);
