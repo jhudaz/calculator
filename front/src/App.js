@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Calculator from './containers/calculator';
 import Index from './containers/index';
-import CalculatorResults from './containers/calculator-results'; 
+import CalculatorResults from './containers/calculator-results';
 import GitProfile from './containers/git-profile';
 import ConsumeApi from './containers/consume-api';
 import './App.scss';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch,} from "react-router-dom";
 
 class App extends Component {
   render() {
@@ -31,11 +31,15 @@ class App extends Component {
               </li>
             </ul>
           </nav>
-          <Route path="/" exact component={Index} />
-          <Route path="/calculator/" component={Calculator} />
-          <Route path="/calculator-results/" component={CalculatorResults} />
-          <Route path="/git-profile/" component={GitProfile} />
-          <Route path="/consume-api/" component={ConsumeApi} />
+          <Switch>
+            <Route path="/" exact component={Index} />
+            <Route path="/calculator/" component={Calculator} />
+            <Route path="/calculator-results/" component={CalculatorResults} />
+            <Route path="/git-profile/" component={GitProfile} />
+            <Route path="/consume-api/" component={ConsumeApi} />
+            <Route component={NoMatch} />
+          </Switch>
+
         </div>
 
       </Router>
@@ -43,5 +47,13 @@ class App extends Component {
     );
   }
 }
-
+function NoMatch({ location }) {
+  return (
+    <div>
+      <h3>
+        No match for <code>{location.pathname}</code>
+      </h3>
+    </div>
+  );
+}
 export default App;
