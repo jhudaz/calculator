@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { consumeApi, consumeApiPut, consumeApiGet, consumeApiDelete } from '../actions';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Update from './update-form';
 import '../App.scss';
 
@@ -45,11 +45,9 @@ class ConsumeApi extends Component {
                 onClick={() => this.props.consumeApiDelete(users.id)}>Delete</button>
             </li>
             <li>
-              <Link to={`/update-form/${users.id}`} >
-                <button
-                  className="update"
-                  onClick={() => this.setEdit()}>Update</button>
-              </Link>
+              <button className="update" onClick={() => this.props.history.push(`/update-user/${users.id}`)}>
+                Update
+              </button>
             </li>
           </ul>
           <Route path={`/update-form/${users.id}`} component={Update} />

@@ -19,7 +19,7 @@ export function consumeApiGet() {
 //GET ONE
 export function consumeApiGetById(id) {
     return (dispatch) => {
-        return axios.get(`${apiRoute}`,{id:id})
+        return axios.get(`${apiRoute}/user`, {params: { id }} )
             .then(res => {
                 dispatch({
                     type: 'CONSUME_API_GET',
