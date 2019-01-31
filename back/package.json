@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha",
     "start": "nodemon index",
-    "seed:dev": "NODE_ENV=development sequelize db:seed:all"
+    "seed:dev": "NODE_ENV=development sequelize db:seed:all",
+    "migrate": "sequelize db:migrate",
+    "seed:test": "NODE_ENV=test sequelize db:seed:all"
   },
   "author": "jhudaz",
   "license": "ISC",
