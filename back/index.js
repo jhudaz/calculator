@@ -4,24 +4,24 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
 const cors = require('cors')
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
 const Sequelize = require('sequelize')
+
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOSTNAME,
     dialect: 'postgres',
 });
 
-app.use(bodyParser());
+app.use(bodyParser())
 app.use(cors())
-
 
 sequelize
     .authenticate()
     .then(() => {
-        console.log('Connection has been established successfully.');
+        console.log('Connection has been established successfully.')
     })
     .catch(err => {
-        console.error('Unable to connect to the database:', err);
+        console.error('Unable to connect to the database:', err)
     });
 
 //to define a table 
@@ -91,6 +91,8 @@ app.delete('/', async (req, res) => {
     res.json(userDeleted)
 })
 
-
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
+// for testing
+module.exports = app;
+ 
