@@ -1,9 +1,12 @@
 language: node_js
 node_js:
   - "8"
+services:
+  - postgresql
 before_script:
   - cd back
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
   - npm install
-  
 script:
   - npm test
