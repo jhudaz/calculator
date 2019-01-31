@@ -11,11 +11,11 @@ module.exports = {
     "dialect": process.env.DIALECT
   },
   test: {
-    "username": "postgres",
-    "password": null,
-    "database": "travis_ci_test",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_NAME,
+    "host": process.env.DB_HOSTNAME,
+    "dialect": process.env.DIALECT
   },
   production: {
     "username": "root",
