@@ -6,10 +6,11 @@ const port = process.env.PORT || 3000
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const Sequelize = require('sequelize')
+const User = require('./models/user');
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
     host: process.env.DB_HOSTNAME,
-    dialect: 'postgres',
+    dialect: process.env.DIALECT,
 });
 
 app.use(bodyParser())
@@ -24,15 +25,6 @@ sequelize
         console.error('Unable to connect to the database:', err)
     });
 
-//Model 
-const User = sequelize.define('users', {
-    firstName: {
-        type: Sequelize.STRING
-    },
-    lastName: {
-        type: Sequelize.STRING
-    }
-});
 //api to get all the user from db
 app.get('/', async (req, res) => {
     const users = await User.findAll({
