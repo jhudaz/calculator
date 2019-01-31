@@ -34,15 +34,12 @@ app.get('/', async (req, res) => {
 })
 //api to get only one user by id
 app.get('/user', async (req, res) => {
-    console.log('_________');
-    console.log('req.params.id', req.query.id);
-    console.log('_________');
     const singleUser = await models.User.findAll({
         where: {
             id: req.query.id
         }
     });
-    res.json(singleUser);
+    res.json(singleUser[0]);
 })
 //api to save a user in the db
 app.post('/', async (req, res) => {
