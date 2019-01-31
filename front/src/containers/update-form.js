@@ -17,7 +17,8 @@ class Update extends Component {
   }
   //to bring the data of the user by id
   componentDidMount() {
-    this.props.consumeApiGetById();
+    console.log('props', this.props);
+    this.props.consumeApiGetById(this.props.match.params.userID);
   }
   //to go back on the route
   goBack(){
