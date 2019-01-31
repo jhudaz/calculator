@@ -1,0 +1,9 @@
+languaje: node_js
+node_js:
+  - "8"
+before script:
+  - cd back
+  - npm install
+  
+script:
+  - npm test
