@@ -6,8 +6,9 @@ services:
 before_script:
   - cd back
   - psql -c 'create database travis_ci_test;' -U postgres
+  - npm install
   - npm run migrate
   - npm run seed:test
-  - npm install
+  
 script:
   - npm test
