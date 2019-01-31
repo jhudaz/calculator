@@ -24,7 +24,7 @@ sequelize
         console.error('Unable to connect to the database:', err)
     });
 
-//to define a table 
+//Model 
 const User = sequelize.define('users', {
     firstName: {
         type: Sequelize.STRING
@@ -95,4 +95,3 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 // for testing
 module.exports = app;
- 
