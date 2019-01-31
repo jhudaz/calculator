@@ -27,7 +27,7 @@ class GitProfile extends Component {
             <div className="container">
                 <h2>User:</h2>
                 <br />
-                <input autofocus="true" type="text" placeholder='user' onKeyUp={this.handleKeyUp} value={this.state.userName} onChange={e => this.setState({ userName: e.target.value })} />
+                <input autoFocus={true} type="text" placeholder='user' onKeyUp={this.handleKeyUp} value={this.state.userName} onChange={e => this.setState({ userName: e.target.value })} />
                 <button
                     className="save"
                     onClick={() => this.props.gitProfile(this.state.userName)}>Find</button>

@@ -12,23 +12,32 @@ class Update extends Component {
       fName: '',
       lName: ''
     }
-    this.updateData = this.updateData.bind(this);
+    // this.updateData = this.updateData.bind(this);
     this.goBack = this.goBack.bind(this);
+    // this.setState({
+    //   fName: this.props.consumeApiReducer.user.firstName,
+    //   lName:this.props.consumeApiReducer.user.lastName
+    // })
   }
   //to bring the data of the user by id
   componentDidMount() {
-    console.log('props', this.props);
     this.props.consumeApiGetById(this.props.match.params.userID);
   }
   //to go back on the route
-  goBack(){
+  goBack() {
     this.props.history.goBack();
     // this.props.history.push('/');
   }
   //function to update data of one user and clear the inputs
-  updateData(id, fn, ln) {
-    this.props.consumeApiPut(id, fn, ln);
-    this.setState({ edit: false, fName: '', lName: '' });
+  // updateData(id, fn, ln) {
+  //   this.props.consumeApiPut(id, fn, ln);
+  // }
+  static getDerivedStateFromProps(props) {
+    // console.log('......',props.consumeApiReducer)
+    return {
+      fName: props.consumeApiReducer.user.firstName,
+      lName: props.consumeApiReducer.user.lastName
+    }
   }
 
   render() {
@@ -56,7 +65,7 @@ class Update extends Component {
               this.state.firstName,
               this.state.lastName
             )}
-            disabled={this.state.fName.length === 0 || this.state.lName.length === 0}>Save</button>
+          >Save</button>
           <button
             className="delete"
             onClick={() => this.goBack()}>Cancel</button>

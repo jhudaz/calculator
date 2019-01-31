@@ -22,7 +22,7 @@ export function consumeApiGetById(id) {
         return axios.get(`${apiRoute}/user`, {params: { id }} )
             .then(res => {
                 dispatch({
-                    type: 'CONSUME_API_GET',
+                    type: 'CONSUME_API_GET_ONE',
                     payload: res.data
                 });
             })

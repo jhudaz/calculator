@@ -57,7 +57,7 @@ class ConsumeApi extends Component {
   }
   //function create  the users list with delete and update functions
   createlist() {
-    return this.props.consumeApiReducer.map((users) => {
+    return this.props.consumeApiReducer.userList.map((users) => {
       return (
         <div key={users.id} ref={this.formRef}>
           <li

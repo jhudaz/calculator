@@ -1,14 +1,21 @@
 function getInitialStatus() {
-    return [];
+    return {
+        userList: [],
+        user: { firstName:'',lastName:''}
+    };
 }
 export default function (status = getInitialStatus(), action) {
     switch (action.type) {
-        // case 'CONSUME_API_POST':
-        //     return action.payload;
-        case 'CONSUME_API_PUT':
-            return action.payload;
         case 'CONSUME_API_GET':
-            return action.payload;
+            return {
+                ...status,
+                userList: action.payload
+            };
+        case 'CONSUME_API_GET_ONE':
+            return {
+                ...status,
+                user: action.payload
+            }
         default:
             return status;
     }
