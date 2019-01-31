@@ -20,23 +20,6 @@ describe('/GET ', () => {
       });
   });
 });
-//test api get only one user
-// describe('/GET ', () => {
-//   it('it should GET only one user!', (done) => {
-//     let users = {
-//       id: 86,
-//     }
-//     chai.request(server)
-//       .get('/user')
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         res.body.should.be.a('array');
-//         done();
-//       });
-//   });
-// });
-
-
 
 //test api post
 describe('/POST ', () => {
