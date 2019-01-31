@@ -12,32 +12,23 @@ class Update extends Component {
       fName: '',
       lName: ''
     }
-    // this.updateData = this.updateData.bind(this);
     this.goBack = this.goBack.bind(this);
-    // this.setState({
-    //   fName: this.props.consumeApiReducer.user.firstName,
-    //   lName:this.props.consumeApiReducer.user.lastName
-    // })
   }
+  
   //to bring the data of the user by id
   componentDidMount() {
-    this.props.consumeApiGetById(this.props.match.params.userID);
+    this.props.consumeApiGetById(this.props.match.params.userID).then(() => {
+      console.log('OELO');
+      this.setState({
+        fName: this.props.consumeApiReducer.user.firstName,
+        lName: this.props.consumeApiReducer.user.lastName
+      })
+    });
   }
+  
   //to go back on the route
   goBack() {
     this.props.history.goBack();
-    // this.props.history.push('/');
-  }
-  //function to update data of one user and clear the inputs
-  // updateData(id, fn, ln) {
-  //   this.props.consumeApiPut(id, fn, ln);
-  // }
-  static getDerivedStateFromProps(props) {
-    // console.log('......',props.consumeApiReducer)
-    return {
-      fName: props.consumeApiReducer.user.firstName,
-      lName: props.consumeApiReducer.user.lastName
-    }
   }
 
   render() {
