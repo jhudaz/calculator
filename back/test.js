@@ -2,7 +2,8 @@ var server = require('./index');
 var assert = require('assert');
 var chai = require('chai');
 var should = chai.should();
-let chaiHttp = require('chai-http');
+var chaiHttp = require('chai-http');
+const models = require('./models');
 
 chai.use(chaiHttp);
 
@@ -20,42 +21,21 @@ describe('/GET ', () => {
   });
 });
 //test api get only one user
-describe('/GET ', () => {
-  it('it should GET only one user!', (done) => {
-    let users = {
-      id: 86,
-    }
-    chai.request(server)
-      .get('/user')
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('array');
-        done();
-      });
-  });
-});
-// describe('/GET/user', () => {
-//   it('it should GET a user by the given id', (done) => {
-//       let users = new User({ 
-//         firstName: "Ruperto", 
-//         author: "Alqueria"
+// describe('/GET ', () => {
+//   it('it should GET only one user!', (done) => {
+//     let users = {
+//       id: 86,
+//     }
+//     chai.request(server)
+//       .get('/user')
+//       .end((err, res) => {
+//         res.should.have.status(200);
+//         res.body.should.be.a('array');
+//         done();
 //       });
-//       users.save((err, users) => {
-//           chai.request(server)
-//         .get('/user/' + users.id)
-//         .send(users)
-//         .end((err, res) => {
-//               res.should.have.status(200);
-//               res.body.should.be.a('string');
-//               res.body.should.have.property('firstName');
-//               res.body.should.have.property('lastName');
-//               res.body.should.have.property('id').eql(users.id);
-//           done();
-//         });
-//       });
-
 //   });
 // });
+
 
 
 //test api post

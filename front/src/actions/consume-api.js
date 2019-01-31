@@ -65,9 +65,9 @@ export function consumeApiPut(id, first, last) {
   console.log("data:", id, first, last);
   return dispatch => {
     return axios
-      .put(`${apiRoute}/`, { id: id, firstName: first, lastName: last })
+      .put(`${apiRoute}/`, { id, firstName: first,lastName: last })
       .then(() => {
-        dispatch(consumeApiGet());
+        dispatch(consumeApiGetById(id));
       })
       .catch(error => {
         throw error;

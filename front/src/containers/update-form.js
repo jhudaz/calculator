@@ -13,19 +13,22 @@ class Update extends Component {
       lName: ''
     }
     this.goBack = this.goBack.bind(this);
+    this.updateData = this.updateData.bind(this);
   }
-  
+
   //to bring the data of the user by id
   componentDidMount() {
     this.props.consumeApiGetById(this.props.match.params.userID).then(() => {
-      console.log('OELO');
       this.setState({
         fName: this.props.consumeApiReducer.user.firstName,
         lName: this.props.consumeApiReducer.user.lastName
       })
     });
   }
-  
+  //function to update data of one user and clear the inputs
+  updateData() {
+    this.props.consumeApiPut(this.props.match.params.userID, this.state.fName, this.state.lName);
+  }
   //to go back on the route
   goBack() {
     this.props.history.goBack();
@@ -51,11 +54,7 @@ class Update extends Component {
         <div>
           <button
             className="save"
-            onClick={() => this.updateData(
-              // users.id,
-              this.state.firstName,
-              this.state.lastName
-            )}
+            onClick={() => this.updateData()}
           >Save</button>
           <button
             className="delete"
